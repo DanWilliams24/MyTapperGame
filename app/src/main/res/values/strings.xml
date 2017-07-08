@@ -2,5 +2,6 @@
     <string name="app_name">MyTapperGame-Android</string>
     <string name="directions">Tap the Button!</string>
     <string name="button">TAP ME!</string>
-
+    <string name="game_over">GAME OVER</string>
+    <string name="restart">Restart</string>
 </resources>
