@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void addScore() {
         if(time > 0){
             score += 1;
