@@ -1,5 +1,6 @@
 package com.example.daniel.mytappergame_android;
 
+import android.content.Intent;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.CountDownTimer;
 import android.provider.Settings;
@@ -12,14 +13,15 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    Integer score = 0;
-    Integer time = 60;
+    public static Integer score = 0;
+    public static Integer time = 60;
     Integer delay = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Code to be run after the scene is loaded
+        gameSetup();
         TextView scoreLabel = (TextView) findViewById(R.id.textView2);//Resets score label
         scoreLabel.setText("Score: " + score);
 
@@ -41,10 +43,17 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 TextView timeLabel = (TextView) findViewById(R.id.timeLabel);
                 timeLabel.setText("Timer Done!");
+                moveToView();
             }
         }.start();
 
     }
+    private void gameSetup() {
+        score = 0;
+        time = 60;
+
+    }
+
 
     private void addScore() {
         if(time > 0){
@@ -54,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             scoreLabel.setText("Score: " + score);
         }
     }
+    private void moveToView() {
+        Intent intent = new Intent(this, GameOverActivity.class);
+        startActivity(intent);
+
+    }
+
 
 
 }
