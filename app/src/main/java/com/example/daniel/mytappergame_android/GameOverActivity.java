@@ -14,8 +14,13 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
+        Integer tapsPerSecond = MainActivity.score / 60;
+
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
         scoreLabel.setText("Score: " + MainActivity.score);
+
+        TextView tapsLabel = (TextView) findViewById(R.id.tapsPerSecondLabel);
+        tapsLabel.setText(tapsPerSecond + " taps/sec");
 
         Button restartButton = (Button)findViewById(R.id.restartButton);
         restartButton.setOnClickListener(new View.OnClickListener(){
