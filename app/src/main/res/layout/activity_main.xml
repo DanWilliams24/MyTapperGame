@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -18,14 +19,15 @@
         android:textSize="36sp"
         android:textStyle="normal|bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/directionsLabel" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_above="@+id/button"
+        android:id="@+id/scoreLabel"
+        android:layout_above="@+id/tapMeButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="68dp"
         android:textSize="36sp"
@@ -35,20 +37,30 @@
         android:text="@string/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
+        android:id="@+id/tapMeButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:background="@color/buttonColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:id="@+id/timeLabel"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="@string/tap_to_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tapToStartLabel"
+        android:textSize="46sp"
+        android:layout_above="@+id/tapMeButton"
+        android:layout_alignRight="@+id/directionsLabel"
+        android:layout_alignEnd="@+id/directionsLabel" />
 
 </RelativeLayout>
