@@ -165,5 +165,5 @@ Code Solution:
             }
             
 
-By using the tapToStartLabel instead of the RelativeLayout, and disabling the label after the User tapped the screen, the timer only is run decreases sequencially. I will need to pay more attention to small problems like these when I am testing the app, so that I do not push issue-ridden files to the master branch.
+By using the tapToStartLabel instead of the RelativeLayout, and disabling the label after the User tapped the screen, the timer now decreases sequencially. I will need to pay more attention to small problems like these when I am testing the app, so that I do not push issue-ridden files to the master branch.
 
