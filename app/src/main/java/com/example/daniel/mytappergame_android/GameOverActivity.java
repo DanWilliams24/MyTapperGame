@@ -22,6 +22,14 @@ public class GameOverActivity extends AppCompatActivity {
         TextView tapsLabel = (TextView) findViewById(R.id.tapsPerSecondLabel);
         tapsLabel.setText(tapsPerSecond + " taps/sec");
 
+        Button mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
+        mainMenuButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                backToMain();
+            }
+        });
+
         Button restartButton = (Button)findViewById(R.id.restartButton);
         restartButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -35,6 +43,10 @@ public class GameOverActivity extends AppCompatActivity {
 
     private void restartGame(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    private void backToMain(){
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
 
