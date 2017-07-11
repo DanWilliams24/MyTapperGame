@@ -12,6 +12,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 public class MainActivity extends AppCompatActivity {
 
     public enum gameState {
@@ -21,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public static Integer time = 60;
     gameState currentState;
     boolean gameDidStart;
+    private AdView mBannerAd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         final TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
         final TextView tapToStartLabel = (TextView)findViewById(R.id.tapToStartLabel);
         gameSetup();
-
+        mBannerAd = (AdView)findViewById(R.id.banner_adView);
+        showBannerAd();
 
         uiSetup();
         RelativeLayout gameView = (RelativeLayout) findViewById(R.id.activity_main);
@@ -79,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private void showBannerAd() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("TEST_EMULATOR")
+                .build();
+        mBannerAd.loadAd(adRequest);
+    }
 
     private void gameSetup() {
         score = 0;
@@ -95,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
         final Button tapMeButton = (Button) findViewById(R.id.tapMeButton);
         final TextView scoreLabel = (TextView)findViewById(R.id.scoreLabel);
         final TextView tapToStartLabel = (TextView)findViewById(R.id.tapToStartLabel);
+
 
         directionsLabel.setVisibility(View.VISIBLE);
         timeLabel.setVisibility(View.INVISIBLE);
