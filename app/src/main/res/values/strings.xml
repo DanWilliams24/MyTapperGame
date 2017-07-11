@@ -8,4 +8,8 @@
     <string name="app_title">TAP FAST</string>
     <string name="play_button">Play</string>
     <string name="back_to_main">Main Menu</string>
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="ad_id_interstitial">ca-app-pub-7697702478003807/3346660376</string>
+    <string name="ad_id_banner">ca-app-pub-7697702478003807/3706587173</string>
+    <string name="gameHeader">My Game App</string>
 </resources>
