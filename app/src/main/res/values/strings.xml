@@ -12,4 +12,7 @@
     <string name="ad_id_interstitial">ca-app-pub-7697702478003807/3346660376</string>
     <string name="ad_id_banner">ca-app-pub-7697702478003807/3706587173</string>
     <string name="gameHeader">My Game App</string>
+    <string name="preference_file_key">com.example.MyTapperGame-Android.PREFERENCE_FILE_KEY</string>
+
+
 </resources>
