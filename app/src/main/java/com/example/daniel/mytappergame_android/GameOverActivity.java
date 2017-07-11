@@ -1,6 +1,8 @@
 package com.example.daniel.mytappergame_android;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,8 @@ public class GameOverActivity extends AppCompatActivity {
     private InterstitialAd mInterstitialAd;
     private Button restartButton;
 
+    Integer tapsPerSecond = MainActivity.score / 60;
+
 
 
     @Override
@@ -24,7 +28,7 @@ public class GameOverActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
 
-        Integer tapsPerSecond = MainActivity.score / 60;
+
 
 
         TextView scoreLabel = (TextView) findViewById(R.id.scoreLabel);
@@ -33,10 +37,9 @@ public class GameOverActivity extends AppCompatActivity {
         TextView tapsLabel = (TextView) findViewById(R.id.tapsPerSecondLabel);
         tapsLabel.setText(tapsPerSecond + " taps/sec");
 
-        if(tapsPerSecond > 2) {
-            Toast speedDemon = Toast.makeText(this, "This is an Achievement, finish this feature!",Toast.LENGTH_LONG);
-            speedDemon.show();
-        }
+        newHighScore();
+
+
 
         Button mainMenuButton = (Button) findViewById(R.id.mainMenuButton);
         mainMenuButton.setOnClickListener(new View.OnClickListener(){
@@ -61,6 +64,51 @@ public class GameOverActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    private void newHighScore(){ // When scene loads, this func checks to see if a new highscore is set
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+
+        if(tapsPerSecond > prefs.getInt("highestTapPerSecond", 0)){
+            saveHighScoreData(tapsPerSecond);
+            highscoreMessage();
+
+        }
+        if(prefs.getInt("highestTapPerSecond", 0) == 0) {
+            saveHighScoreData(tapsPerSecond);
+
+        }
+        editor.apply();
+    }
+
+
+     private void highscoreMessage() {
+        if(tapsPerSecond == 2) {
+
+            Toast beginnerMessage = Toast.makeText(this, "You beat the high score, but I know you can go faster than that!", Toast.LENGTH_LONG);
+            beginnerMessage.show();
+        } else if(tapsPerSecond == 3) {
+
+            Toast speederMessage = Toast.makeText(this, "You beat the high score! Wow your getting pretty good at this.", Toast.LENGTH_LONG);
+            speederMessage.show();
+        } else if(tapsPerSecond >= 5) {
+
+            Toast speedDemonMessage = Toast.makeText(this, "You beat the high score! Slow down a bit,you don't want break your screen!", Toast.LENGTH_LONG);
+            speedDemonMessage.show();
+        }
+
+        }
+
+
+
+
+    private void saveHighScoreData(Integer newHighScore){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = prefs.edit();
+                editor.putInt("highestTapPerSecond", newHighScore);
+                editor.apply();
 
 
     }
