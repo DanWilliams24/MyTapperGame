@@ -167,3 +167,76 @@ Code Solution:
 
 By using the tapToStartLabel instead of the RelativeLayout, and disabling the label after the User tapped the screen, the timer now decreases sequencially. I will need to pay more attention to small problems like these when I am testing the app, so that I do not push issue-ridden files to the master branch.
 
+Problem #3
+==========================================================
+Error: Gradle build finished with 2 error(s) in 2s 857ms
+
+Effect of Problem: App would crash on startup,and app would crash when the GameOverActivity was loaded.
+
+Issue(s):
+
+1. Incorrectly declared method.
+
+		private showBannerAd() { //This is the problem
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("TEST_EMULATOR")
+                .build();
+        mBannerAd.loadAd(adRequest);
+		}
+	Code Solution to Issue 1:
+	
+	 	private void showBannerAd() { //Forgot to add "void"
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("TEST_EMULATOR")
+                .build();
+        mBannerAd.loadAd(adRequest);
+    	}
+	Always double check code for any errors identified by Android Studio. Not doing so can lead to needless troubleshooting.
+
+2. Could not find the Device ID for testing the ads on the Emulator.
+
+ 		private void loadIntAdd() {
+        restartButton = (Button)findViewById(R.id.restartButton);
+        restartButton.setEnabled(false);
+        AdRequest adRequest =  new AdRequest.Builder()
+                .addTestDevice("Add Test Device ID here") //This is the Issue
+                .build();
+        mInterstitialAd.loadAd(adRequest);
+    	}
+	
+		private void showBannerAd() { 
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("Add Test Device ID here")
+                .build();
+        mBannerAd.loadAd(adRequest);
+    	}
+	
+	Code Solution for Issue 2:
+	
+ 		private void loadIntAdd() {
+        restartButton = (Button)findViewById(R.id.restartButton);
+        restartButton.setEnabled(false);
+        AdRequest adRequest =  new AdRequest.Builder()
+                .addTestDevice("ca-app-pub-3940256099942544/1033173712") //This was the test device Id provided by Google in their tutorials
+                .build();
+        mInterstitialAd.loadAd(adRequest);
+    	}
+    
+    	private void showBannerAd() { 
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice("ca-app-pub-3940256099942544/6300978111") //Another test device Id provided by google
+                .build();
+        mBannerAd.loadAd(adRequest);
+    	}
+When submitting my app to a store, I will have to delete these test ads. As for issue 2:
+	
+These are the test device Id's that can be used to TEST ads
+
+Banner :  ca-app-pub-3940256099942544/6300978111
+
+Interstitial: ca-app-pub-3940256099942544/1033173712
+
+Found here:
+https://stackoverflow.com/questions/24268888/how-to-test-admob-in-real-device-if-without-ad-unit-id
+
+
