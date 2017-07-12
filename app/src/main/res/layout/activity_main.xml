@@ -22,17 +22,6 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/directionsLabel" />
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/scoreLabel"
-        android:layout_above="@+id/tapMeButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="68dp"
-        android:textSize="36sp"
-        android:textStyle="normal|bold" />
-
     <Button
         android:text="@string/button"
         android:layout_width="wrap_content"
@@ -76,6 +65,16 @@
         ads:adUnitId="@string/ad_id_banner">
     </com.google.android.gms.ads.AdView>
 
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scoreLabel"
+        android:layout_marginBottom="10dp"
+        android:textSize="36sp"
+        android:textStyle="normal|bold"
+        android:layout_above="@+id/tapToStartLabel"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
